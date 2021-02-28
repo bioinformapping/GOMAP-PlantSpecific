@@ -26,7 +26,7 @@ GOMAP_PLANT_SPECIFIC_VERSION v0.1
     #Installing the necessary R packages
 	R -e 'install.packages(c("argparse","data.table","ontologyIndex","tools"), repos="https://mirror.las.iastate.edu/CRAN/", INSTALL_opts="--no-html")'
 
-	  echo "Completed Post   "
+	echo "Completed Post   "
 
 %runscript
 	/opt/PlantSpecific/filterPlantSpecific.R "$@"
