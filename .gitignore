@@ -1,0 +1,11 @@
+.ipynb_checkpoints
+*.simg
+/*.out
+*log
+*.sif
+*err
+*tar.gz
+/data
+/software
+/GOMAP
+/tmp/
