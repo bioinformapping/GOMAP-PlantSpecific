@@ -34,6 +34,6 @@ A container to filter GO annotations to filter for plant-specific GO terms from 
 		GOMAP-PlantSpecific.sif \
 		--input=test/B73v3.curated.gaf \
 		--go_obo=test/testSpecificGoTerms.txt \
-		--specific=
+		--specific=test/testSpecificGoTerms.txt
 		--output=test/B73v3.curated.plant-spec.gaf
    ```
