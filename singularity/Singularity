@@ -1,37 +1,27 @@
-Bootstrap: shub
-From: Dill-PICL/GOMAP-base:latest
+Bootstrap: docker
+From: r-base:latest
 
 %labels
 GOMAP_OWNER Wimalanathan Kokulapalan
 GOMAP_MAINTAINER Wimalanathan Kokulapalan 
-GOMAP_VERSION v1.3.4
+GOMAP_VERSION v0.1
 
 %files
-	GOMAP /opt/
+	PlantSpecific /opt/
 
 %environment
     export LC_ALL=C 
     export DEBIAN_FRONTEND=noninteractive
+	export SCRIPT_LOC=/opt/PlantSpecific
  
 %post
 	export DEBIAN_FRONTEND="noninteractive"
 	echo "Running post      "
-
-    # Downloading GOMAP code
-	ls -la /opt
-	chmod -R 777 /opt/GOMAP/
 	
-    #Downloading backed in GOMAP code 
-	cd /opt/GOMAP/data && \
-	chmod -R 755 software && chmod -R 755 data
-
-    #Installing mpich and python package to use it
-	wget -q http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz  && \
-	tar -xf  mpich-3.2.1.tar.gz && \
-	cd mpich-3.2.1 &&  \
-	./configure && make -j8 && make install &&  \
-	cd .. && \
-	pip install mpi4py==3.0.0  
+	apt-get update && \
+	apt-get install -y python3.9
+    #Installing the necessary R packages
+	R -e 'install.packages(c("argparse","data.table","ontologyIndex","parallel"), repos="https://mirror.las.iastate.edu/CRAN/", INSTALL_opts="--no-html")'
 	
     #Making necessary directories
 	  mkdir -p /workdir
@@ -46,5 +36,4 @@ GOMAP_VERSION v1.3.4
 	chmod 777 /tmp
 
 %runscript
-	cd /opt/GOMAP/ 
-	./gomap.py "$@"
+	/opt/PlantSpecific/filterPlantSpecific.R "$@"
