@@ -29,11 +29,7 @@ GOMAP_VERSION v0.1
 	  mkdir -p /work	  
 	  mkdir -p /scratch
 
-	  
 	  echo "Completed Post   "
-
-%startscript
-	chmod 777 /tmp
 
 %runscript
 	/opt/PlantSpecific/filterPlantSpecific.R "$@"
