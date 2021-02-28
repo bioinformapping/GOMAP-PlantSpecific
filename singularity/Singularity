@@ -22,12 +22,6 @@ GOMAP_VERSION v0.1
 	apt-get install -y python3.9
     #Installing the necessary R packages
 	R -e 'install.packages(c("argparse","data.table","ontologyIndex","parallel"), repos="https://mirror.las.iastate.edu/CRAN/", INSTALL_opts="--no-html")'
-	
-    #Making necessary directories
-	  mkdir -p /workdir
-	  mkdir -p /tmpdir
-	  mkdir -p /work	  
-	  mkdir -p /scratch
 
 	  echo "Completed Post   "
 
