@@ -4,10 +4,7 @@ From: r-base:latest
 %labels
 GOMAP_OWNER Wimalanathan Kokulapalan
 GOMAP_MAINTAINER Wimalanathan Kokulapalan 
-GOMAP_VERSION v0.1
-
-%files
-	PlantSpecific /opt/
+GOMAP_PLANT_SPECIFIC_VERSION v0.1
 
 %environment
     export LC_ALL=C 
@@ -19,7 +16,13 @@ GOMAP_VERSION v0.1
 	echo "Running post      "
 	
 	apt-get update && \
-	apt-get install -y python3.9
+	apt-get install -y python3.9 git
+
+	git clone https://github.com/bioinformapping/GOMAP-PlantSpecific.git &&
+	cp -R GOMAP-PlantSpecific/PlantSpecific /opt/
+
+	chmod 755 /opt/PlantSpecific/filterPlantSpecific.R
+
     #Installing the necessary R packages
 	R -e 'install.packages(c("argparse","data.table","ontologyIndex","parallel"), repos="https://mirror.las.iastate.edu/CRAN/", INSTALL_opts="--no-html")'
 

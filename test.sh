@@ -20,4 +20,6 @@ unset SINGULARITY_TMPDIR
 
 echo "$@"
 
-echo "singularity run $img_loc --input=test/B73v3.curated.gaf --output=test/B73v3.curated.plant-spec.gaf"
+cmd="singularity run $img_loc --input=test/B73v3.curated.gaf --output=test/B73v3.curated.plant-spec.gaf"
+echo "$cmd"
+eval "$cmd"

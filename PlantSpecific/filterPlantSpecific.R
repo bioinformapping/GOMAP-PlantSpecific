@@ -1,18 +1,12 @@
 #!/usr/bin/env Rscript
 script_loc = Sys.getenv("SCRIPT_LOC")
 
-print(script_loc)
-
 source(file.path(script_loc,"R","gafTools.R"))
 source(file.path(script_loc,"R","oboTools.R"))
 source(file.path(script_loc,"R","genUtils.R"))
 source(file.path(script_loc,"R","getNonredDataset.R"))
 library("data.table")
 library("argparse")
-
-print(getwd())
-
-print(dir(".",recursive=TRUE,full.names=TRUE))
 
 parser <- ArgumentParser()
 
@@ -30,8 +24,6 @@ parser$add_argument("-o", "--output", type="character",
   help="Output file to write plant-specific terms to", required=TRUE)
 
 args <- parser$parse_args()
-
-print(args)
 
 go_obo <- check_obo_data(args$go_obo)
 sppSpecTerms <- readLines(args$specific)
