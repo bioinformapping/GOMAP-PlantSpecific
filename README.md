@@ -20,4 +20,11 @@ A container to filter GO annotations to filter for plant-specific GO terms from 
 		--input=test/B73v3.curated.gaf \
 		--output=test/B73v3.curated.plant-spec.gaf
    ```
-3. 
+3. [OPTIONAL] Use the latest Gene Ontology Structure
+   ```
+	singularity run \
+		GOMAP-PlantSpecific.sif \
+		--input=test/B73v3.curated.gaf \
+		--go_obo=test/go.obo \
+		--output=test/B73v3.curated.plant-spec.gaf
+   ```

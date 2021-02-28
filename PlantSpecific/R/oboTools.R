@@ -1,6 +1,7 @@
 library("ontologyIndex")
 library("data.table")
 library("parallel")
+library("tools")
 
 check_obo_data = function(obo){
     obo_data = paste(obo,".data",sep="")
@@ -15,8 +16,10 @@ check_obo_data = function(obo){
         print(paste("", obo_data," does not exist. So reading ",obo," and saving the R object", sep=""))
         print(paste("Reading",obo))
         print(system.time({
-            obo_gz=gzfile(obo,"rt")
-            go_obo = get_ontology(obo_gz,propagate_relationships = c("is_a","part_of"),extract_tags="everything")
+            if(file_ext(obo)=="gz"){
+                obo=gzfile(obo,"rt")
+            }
+            go_obo = get_ontology(obo,propagate_relationships = c("is_a","part_of"),extract_tags="everything")
         }))
         alt_conv = get_alt_id(go_obo)
         go_obo$alt_conv = alt_conv

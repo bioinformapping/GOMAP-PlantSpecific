@@ -5,18 +5,11 @@ img_loc="$PWD/$instance_name.sif"
 mkdir -p $PWD/tmp
 unset SINGULARITY_TMPDIR
 
-# if [ ! -f "$img_loc" ]
-# then
-#     echo "The ${instance_name} image is missing"
-# 	singularity pull $img_loc shub://Dill-PICL/GOMAP-base > /dev/null
-# fi
-
-# if [ -z $tmpdir ]
-# then
-#     tmpdir=${TMPDIR:-$PWD/tmp}
-# fi
-
-# export SINGULARITY_BINDPATH="$PWD:/workdir,$tmpdir:/tmpdir,$PWD/GOMAP:/opt/GOMAP"
+if [ ! -f "$img_loc" ]
+then
+    echo "The ${instance_name} image is missing"
+	singularity pull $img_loc shub://bioinformapping/$instance_name > /dev/null
+fi
 
 echo "$@"
 
