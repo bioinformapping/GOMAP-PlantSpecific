@@ -13,6 +13,11 @@ fi
 
 echo "$@"
 
-cmd="singularity run $img_loc --input=test/B73v3.curated.gaf --output=test/B73v3.curated.plant-spec.gaf"
+export SINGULARITY_BINDPATH="PlantSpecific:/opt/PlantSpecific"
+
+cmd="singularity run $img_loc \
+	--input=test/B73v3.curated.gaf \
+	--output=test/B73v3.curated.plant-spec.gaf \
+	--specific=test/testSpecificGoTerms.txt"
 echo "$cmd"
 eval "$cmd"
